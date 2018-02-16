@@ -36,7 +36,7 @@ block content
         e.preventDefault();
         var request = $.ajax({
             type: 'POST',
-            url: 'http://localhost:3000'+href
+            url: 'http://localhost:8000'+href
         });
 
         request.done(function(msg){
@@ -46,6 +46,6 @@ block content
 
         request.fail(function(jqXHR, textStatus){
           $(".alert").hide();
-          $("#alert-danger").html(textStatus).show();
+          $("#alert-danger").html(jqXHR.responseText).show();
         });
       });

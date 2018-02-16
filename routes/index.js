@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var morgan = require('morgan');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -10,16 +11,16 @@ var exec = require('child_process').exec;
 
 router.post('/deploy-trunk', function (req, res) {
   function puts(error, stdout, stderr) { sys.puts(stdout) }
-  exec("tilda", function(error, stdout, stderr) {
-  if (!error) {
-    // things worked!
-    res.send('Peticion recibida. Cruza los dedos');
-  } else {
-    // things failed :(
-    res.send('Algo fue mal');
-  }
-});
-
+  exec("ls -l", function(error, stdout, stderr) {
+    morgan(' holaaaaaa')
+    if (!error) {
+      // things worked!
+      res.send('Ejecucion terminada. Suerte.<br>' + stdout);
+    } else {
+      // things failed :(
+      res.status(500).send('Algo fue mal. :(<br>' + stderr);
+    }
+  });
 });
 
 router.post('/deploy-branch', function (req, res) {
