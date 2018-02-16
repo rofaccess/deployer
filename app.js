@@ -67,4 +67,6 @@ app.use(function (req, res, next) {
 });
 
 module.exports = app;
+
+//Listen in all interfaces
 app.listen(9000, '0.0.0.0');

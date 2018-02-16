@@ -11,7 +11,7 @@ var exec = require('child_process').exec;
 
 router.post('/deploy-trunk', function (req, res) {
   function puts(error, stdout, stderr) { sys.puts(stdout) }
-  exec("ls -l", function(error, stdout, stderr) {
+  exec("gnome-terminal -e '/home/rodrigo/Documents/inspira/source_deploy/trunk/code/./dev_deploy.sh'", function(error, stdout, stderr) {
     morgan(' holaaaaaa')
     if (!error) {
       // things worked!
