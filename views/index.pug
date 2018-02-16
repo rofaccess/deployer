@@ -1,0 +1,51 @@
+extends layout
+
+block content
+  main(role='main')
+    div(class="album py-5 bg-light")
+      div.container
+        div.row
+          div.col-md-4
+            div(class='card mb-4 box-shadow')
+              img(class='card-img-top' src='/images/deploy.png' alt='/images/deploy.png')
+              div.card-body
+                h5.card-title DEPLOY
+                p.card-text This send trunk code to test server
+                a(class='btn btn-primary run-btn' href='/deploy-trunk') Run
+          div.col-md-4
+            div(class='card mb-4 box-shadow')
+              img(class='card-img-top' src='/images/branch.png' alt='/images/branch.png')
+              div.card-body
+                h5.card-title DEPLOY
+                p.card-text This send branch code to test server
+                a(class='btn btn-primary run-btn' href='/deploy-branch') Run
+          div.col-md-4
+            div(class='card mb-4 box-shadow')
+              img(class='card-img-top' src='/images/db.png' alt='/images/db.png')
+              div.card-body
+                h5.card-title GET
+                p.card-text This get test server database
+                a(class='btn btn-primary run-btn' href='/get-db') Run
+        div(id='alert-info' class='alert alert-info' role='alert')
+        div(id='alert-danger' class='alert alert-danger' role='alert')
+    script(type='text/javascript').
+      $(".alert").hide();
+
+      $('.run-btn').click(function(e) {
+        href = $(this).attr('href');
+        e.preventDefault();
+        var request = $.ajax({
+            type: 'POST',
+            url: 'http://localhost:3000'+href
+        });
+
+        request.done(function(msg){
+          $(".alert").hide();
+          $("#alert-info").html(msg).show();
+        });
+
+        request.fail(function(jqXHR, textStatus){
+          $(".alert").hide();
+          $("#alert-danger").html(textStatus).show();
+        });
+      });
