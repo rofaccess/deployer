@@ -25,9 +25,10 @@ block content
               div.card-body
                 h5.card-title GET
                 p.card-text This get test server database
-                a(class='btn btn-primary run-btn' href='/get-db') Run
+                a(class='btn btn-primary get-file-btn' href='/get-db' target='_blank') Run
         div(id='alert-info' class='alert alert-info' role='alert')
         div(id='alert-danger' class='alert alert-danger' role='alert')
+        
     script(type='text/javascript').
       $(".alert").hide();
 
@@ -40,12 +41,20 @@ block content
         });
 
         request.done(function(msg){
-          $(".alert").hide();
-          $("#alert-info").html(msg).show();
+          done(msg);
         });
 
         request.fail(function(jqXHR, textStatus){
-          $(".alert").hide();
-          $("#alert-danger").html(jqXHR.responseText).show();
+          fail(jqXHR, textStatus);
         });
       });
+      
+      function done(msg){
+        $(".alert").hide();
+        $("#alert-info").html(msg).show();
+      };
+      
+      function fail(jqXHR, textStatus){
+        $(".alert").hide();
+        $("#alert-danger").html(jqXHR.responseText).show();
+      };
