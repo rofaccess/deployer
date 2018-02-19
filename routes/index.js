@@ -24,8 +24,7 @@ function runScript(scriptName){
 
 router.post('/deploy-trunk', function (req, res) {
   function puts(error, stdout, stderr) { sys.puts(stdout) }
-  exec("gnome-terminal -e '/home/rodrigo/Documents/inspira/source_deploy/trunk/code/./dev_deploy.sh'", function(error, stdout, stderr) {
-    morgan(' holaaaaaa')
+  exec("gnome-terminal -e '/home/rodrigo/Documents/inspira/source_deploy/trunk/code/./dev_deploy.sh'", function(error, stdout, stderr) {   
 
     if (!error) {
       res.send('Ejecucion terminada.<br>' + stdout);
