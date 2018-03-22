@@ -23,6 +23,8 @@ function runScript(scriptName){
 };
 
 router.post('/deploy-trunk', function (req, res) {
+  res.send('Deploy a trunk deshabilitado. Usar branch deploy');
+  /*
   function puts(error, stdout, stderr) { sys.puts(stdout) }
   exec("gnome-terminal -e '/home/rodrigo/Documents/inspira/source_deploy/trunk/code/./dev_deploy.sh'", function(error, stdout, stderr) {   
 
@@ -32,13 +34,24 @@ router.post('/deploy-trunk', function (req, res) {
       res.status(500).send('Algo fue mal. :(<br>' + stderr);
     }
   });
+  */
 });
 
 router.post('/deploy-branch', function (req, res) {
-  res.send('No implementado. Bye');
+  function puts(error, stdout, stderr) { sys.puts(stdout) }
+  exec("gnome-terminal -e '/home/rodrigo/Documents/inspira/source_deploy/branches/1.30/code/./dev_deploy.sh'", function(error, stdout, stderr) {   
+
+    if (!error) {
+      res.send('Ejecucion terminada.<br>' + stdout);
+    } else {
+      res.status(500).send('Algo fue mal. :(<br>' + stderr);
+    }
+  });
 });
 
 router.get('/get-db', function (req, res) {
+  res.send('No implementado. Bye');
+/*  
   exec("gnome-terminal -e '/home/rodrigo/Documents/inspira/deployer/uploads/./get_db_backup.sh'", function(error, stdout, stderr) {
     if (!error) {
       var filePath = __dirname + '/../uploads/db_backup.sql';
@@ -47,6 +60,7 @@ router.get('/get-db', function (req, res) {
       res.status(500).send('No se pudo obtener el archivo. :(<br>' + stderr);
     }
   });
+*/  
 });
 
 module.exports = router;
