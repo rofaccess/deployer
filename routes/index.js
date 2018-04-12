@@ -8,6 +8,11 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+/* GET home page. */
+router.get('/print-example', function(req, res, next) {
+  res.render('print-example', { title: 'Express' });
+});
+
 var exec = require('child_process').exec;
 
 // I can't use next function
@@ -22,9 +27,7 @@ function runScript(scriptName){
   });
 };
 
-router.post('/deploy-trunk', function (req, res) {
-  res.send('Deploy a trunk deshabilitado. Usar branch deploy');
-  /*
+router.post('/deploy-trunk', function (req, res) {  
   function puts(error, stdout, stderr) { sys.puts(stdout) }
   exec("gnome-terminal -e '/home/rodrigo/Documents/inspira/source_deploy/trunk/code/./dev_deploy.sh'", function(error, stdout, stderr) {   
 
@@ -33,8 +36,7 @@ router.post('/deploy-trunk', function (req, res) {
     } else {
       res.status(500).send('Algo fue mal. :(<br>' + stderr);
     }
-  });
-  */
+  });  
 });
 
 router.post('/deploy-branch', function (req, res) {
